@@ -36,3 +36,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+--- THIS NOTE ---
+GITHUB :
+1. Setelah berhasil diinstal, jika berhasil maka bisa dicek dengan: `git --version`
+2. Konfigurasi awal dengan username dan email contoh:
+`git config --global user.name "username_github"`
+`git config --global user.email "username@gmail.com"`
+3. Jika berhasil cek dengan `git config --list`
+4. Pembuatan repositori dapat dilakukan dengan perintah `git init nama-dir` / `git init .`
+5. Setalah ditambahkan, coba ketik perintah `git status` untuk melihat status repositorinya.
+6. `git add .` / `git add -A`
+7. `git commit -m "nama_commit" `
+8. `git remote add origin 'nama_branch'`
+9. buat branch baru jika tidak ingin di push ke main `git checkout -b ' nama_branch_baru '`
