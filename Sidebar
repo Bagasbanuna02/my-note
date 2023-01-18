@@ -1,0 +1,171 @@
+import { PropsWithChildren, useState } from "react";
+import {
+  AppShell,
+  Navbar,
+  Header,
+  Footer,
+  Aside,
+  Text,
+  MediaQuery,
+  Burger,
+  useMantineTheme,
+  Stack,
+  ScrollArea,
+  Group,
+  ActionIcon,
+  Box,
+  NavLink,
+  Divider,
+  Center,
+  Loader,
+} from "@mantine/core";
+
+import { IconArrowLeft, IconArrowRight, IconHome } from "@tabler/icons";
+import { ListItem } from "@mantine/core/lib/List/ListItem/ListItem";
+import { useRouter } from "next/router";
+import { useDisclosure, useShallowEffect } from "@mantine/hooks";
+import store from "store2";
+
+// susunan untuk menu atau sidebar
+const listMenu = [
+  {
+    title: "Summary",
+    id: 1,
+    link: "/summary",
+    icon: IconHome,
+  },
+  {
+    title: "Media listener",
+    id: 2,
+    link: "/media-listener",
+    icon: IconHome,
+  },
+  {
+    title: "Emotion Analysis",
+    id: 3,
+    link: "/emotion-analysis",
+    icon: IconHome,
+  },
+  {
+    title: "OCEAN Analysis",
+    id: 4,
+    link: "/ocean-analysis",
+    icon: IconHome,
+  },
+  {
+    title: "Predictive Ai",
+    id: 5,
+    link: "/predictive-ai",
+    icon: IconHome,
+  },
+];
+
+export default function LayoutDefault({ children }: PropsWithChildren) {
+  const theme = useMantineTheme();
+  const [opened, setOpened] = useState(false);
+  const router = useRouter();
+  const [mengecil, setMengecil] = useState<boolean | undefined>();
+
+  useShallowEffect(() => {
+    // const isMengecil = store("mengecil");
+    // if (isMengecil) setMengecil(isMengecil);
+    setMengecil(store("mengecil") ?? false);
+  }, []);
+  if (mengecil == null)
+    return (
+      <>
+        <Center>
+          <Loader />
+        </Center>
+      </>
+    );
+  return (
+    <AppShell
+      styles={{
+        main: {
+          background:
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
+        },
+      }}
+      navbarOffsetBreakpoint="sm"
+      asideOffsetBreakpoint="sm"
+      navbar={
+        <Navbar
+          p="md"
+          hiddenBreakpoint="sm"
+          hidden={!opened}
+          width={{ sm: mengecil ? 80 : 200, lg: mengecil ? 80 : 300 }}
+        >
+          {!mengecil && (
+            <Navbar.Section>
+              <Text>Eagle Eye</Text>
+              <Text fz={9}>project</Text>
+            </Navbar.Section>
+          )}
+          <Divider my={"lg"} />
+          <Navbar.Section grow>
+            <Stack>
+              {listMenu.map((v) => (
+                <Box key={v.id}>
+                  <NavLink
+                    label={v.title}
+                    icon={<v.icon />}
+                    onClick={() => router.push(v.link)}
+                  />
+                </Box>
+              ))}
+            </Stack>
+          </Navbar.Section>
+          <Divider my={"lg"} />
+          <Navbar.Section>
+            <Group position="right">
+              <ActionIcon
+                onClick={() => {
+                  setMengecil((v) => !v);
+                  store("mengecil", !mengecil);
+                }}
+              >
+                {mengecil ? <IconArrowRight /> : <IconArrowLeft />}
+              </ActionIcon>
+            </Group>
+          </Navbar.Section>
+        </Navbar>
+      }
+      //   aside={
+      //     <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+      //       <Aside p="md" hiddenBreakpoint="sm" width={{ sm: 200, lg: 300 }}>
+      //         <Text>Application sidebar</Text>
+      //       </Aside>
+      //     </MediaQuery>
+      //   }
+      //   footer={
+      //     <Footer height={60} p="md">
+      //       Application footer
+      //     </Footer>
+      //   }
+      //   header={
+      //     <Header height={{ base: 50, md: 70 }} p="md">
+      //       <div
+      //         style={{ display: "flex", alignItems: "center", height: "100%" }}
+      //       >
+      //         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+      //           <Burger
+      //             opened={opened}
+      //             onClick={() => setOpened((o) => !o)}
+      //             size="sm"
+      //             color={theme.colors.gray[6]}
+      //             mr="xl"
+      //           />
+      //         </MediaQuery>
+
+      //         <Text>Application header</Text>
+      //       </div>
+      //     </Header>
+      //   }
+    >
+      {children}
+    </AppShell>
+  );
+}
