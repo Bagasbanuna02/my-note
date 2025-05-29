@@ -26,8 +26,8 @@ export function MobileWrapper({ children }: { children: React.ReactNode }) {
           flexDirection: "column",
           width: "100%",
           maxWidth: 480,
-          boxShadow: "0 0 12px rgba(0, 0, 0, 0.1)",
-          border: "0.5px solid #dee2e6",
+          boxShadow: "0 0 30px rgba(0, 0, 0, 0.3)",
+          // border: "0.5px solid #dee2e6",
           position: "relative", // Agar child fixed-position tidak keluar dari konteks ini
         }}
       >
@@ -35,7 +35,7 @@ export function MobileWrapper({ children }: { children: React.ReactNode }) {
         <header
           style={{
             height: 60,
-            padding: "0 16px",
+            padding: "0 16px",  
             backgroundColor: COLOR.dark_green,
             color: "#ffffff",
             display: "flex",
@@ -55,9 +55,11 @@ export function MobileWrapper({ children }: { children: React.ReactNode }) {
         {/* Konten Utama - Scrollable */}
         <main
           style={{
+            paddingInline: "16px",
+            paddingTop: "16px",
+            paddingBottom: 60, // Memberi ruang untuk footer fixed
             flex: 1,
             overflowY: "auto",
-            paddingBottom: 60, // Memberi ruang untuk footer fixed
             backgroundColor: COLOR.white,
           }}
         >
