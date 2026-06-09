@@ -6,437 +6,223 @@
   <title>AutoCare Pro — Bengkel Mobil Terpercaya</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    /* ── OnePlus Design Tokens ───────────────────────────────── */
     :root {
-      /* colors */
-      --primary:   #000000;
-      --secondary: #FFFFFF;
-      --surface:   #828282;
-      --accent:    #E83A2E;        /* brand red retained */
-      --bg:        #FFFFFF;
-      --bg-alt:    #F5F5F5;
-      --border:    rgba(0,0,0,.10);
-      --border-hi: rgba(0,0,0,.18);
-
-      /* fonts – OnePlus Sans → Plus Jakarta Sans; body → Source Sans 3 */
-      --ff-d: 'Plus Jakarta Sans', sans-serif;
-      --ff-b: 'Source Sans 3', sans-serif;
-
-      /* type scale (OnePlus DESIGN.md) */
-      --t1: 40px; --lh1: 1.20;
-      --t2: 36px; --lh2: 1.19;
-      --t3: 32px; --lh3: 1.25;
-      --t4: 28px; --lh4: 1.29;
-      --t5: 24px; --lh5: 1.33;
-      --t8: 18px; --lh8: 1.22;
-      --t9: 16px; --lh9: 1.50;
-      --t14:14px; --lh14:1.29;
-      --t21:12px; --lh21:1.33;
-
-      /* 8px spacing scale */
-      --s1:  8px;  --s2: 16px; --s3: 24px; --s4: 32px;
-      --s5: 40px;  --s6: 48px; --s8: 64px; --s10:80px;
-      --s15:120px;
-
-      /* radius tokens */
-      --r-sm: 2px; --r-md: 4px; --r-lg: 6px;
-      --r-xl: 999px; --r-full: 9999px;
-
-      /* shadows */
-      --sh-sm: rgba(0,0,0,.08) 0px 5px 12px 0px;
-      --sh-md: rgba(0,0,0,.10) 0px 4px 10px 0px;
-      --sh-lg: rgba(0,0,0,.30) 4px 4px 20px 0px;
+      --black: #0C0C0E;
+      --dark: #111114;
+      --card: #16161A;
+      --border: rgba(255,255,255,0.07);
+      --red: #E83A2E;
+      --orange: #FF6B35;
+      --white: #F2F0EC;
+      --gray: #555760;
+      --silver: #9A9AA8;
     }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;}
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body {
-      background: var(--bg);
-      color: var(--primary);
-      font-family: var(--ff-b);
-      font-size: var(--t9);
-      line-height: var(--lh9);
-      overflow-x: hidden;
+    /* Cursor */
+    .cur{width:9px;height:9px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+    .cur-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;opacity:.55;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;}
+
+    /* Nav */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 52px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,12,14,.86);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:height .3s,background .3s;}
+    nav.scrolled{height:58px;background:rgba(12,12,14,.97);}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .logo-mark{width:34px;height:34px;background:var(--orange);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#fff;}
+    .logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:19px;letter-spacing:2.5px;color:var(--white);text-transform:uppercase;}
+    .logo-text b{color:var(--orange);font-weight:800;}
+    .nav-links{display:flex;gap:36px;list-style:none;}
+    .nav-links a{color:var(--silver);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;position:relative;transition:color .2s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--orange);transition:width .3s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a:hover::after{width:100%;}
+    .nav-cta{background:var(--orange);color:#fff;padding:9px 22px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:background .2s;}
+    .nav-cta:hover{background:var(--red);}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+    .nav-toggle span{width:22px;height:2px;background:var(--white);display:block;}
+
+    /* Hero */
+    .hero{min-height:100vh;padding-top:70px;position:relative;display:flex;align-items:center;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 40% 50%,black 25%,transparent 75%);}
+    .hero-glow{position:absolute;top:50%;right:10%;transform:translateY(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(232,58,46,.1) 0%,transparent 70%);pointer-events:none;}
+    .hero-inner{max-width:1380px;margin:0 auto;padding:0 52px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+    .hero-tag{display:inline-flex;align-items:center;gap:9px;padding:5px 13px;border:1px solid var(--orange);color:var(--orange);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:26px;opacity:0;animation:fadeUp .8s ease .2s forwards;}
+    .tag-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;animation:blink 1.5s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+    .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(58px,7.5vw,106px);line-height:.91;text-transform:uppercase;letter-spacing:-1px;opacity:0;animation:fadeUp .9s ease .4s forwards;}
+    .hero-title .accent{background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero-sub{margin-top:22px;color:var(--silver);font-size:15px;line-height:1.75;max-width:460px;opacity:0;animation:fadeUp .9s ease .6s forwards;}
+    .hero-actions{margin-top:36px;display:flex;align-items:center;gap:18px;opacity:0;animation:fadeUp .9s ease .75s forwards;}
+    .btn-primary{background:var(--orange);color:#fff;padding:15px 34px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .25s,transform .2s;display:inline-block;}
+    .btn-primary:hover{background:var(--red);transform:translateY(-2px);}
+    .btn-ghost{color:var(--white);padding:14px 34px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--border);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:border-color .2s,color .2s;}
+    .btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+    .hero-stats{display:flex;gap:36px;margin-top:52px;padding-top:32px;border-top:1px solid var(--border);opacity:0;animation:fadeUp .9s ease .95s forwards;}
+    .hstat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:38px;line-height:1;color:var(--white);}
+    .hstat-num em{color:var(--orange);font-style:normal;}
+    .hstat-label{font-size:11px;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+
+    /* Hero visual */
+    .hero-visual{position:relative;height:500px;opacity:0;animation:fadeIn 1.2s ease .5s forwards;}
+    .hero-frame{position:absolute;inset:0;border:1px solid var(--border);clip-path:polygon(24px 0%,100% 0%,calc(100% - 24px) 100%,0% 100%);overflow:hidden;background:var(--dark);}
+    .hero-frame-accent{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),var(--red),transparent);}
+    .hero-frame-accent-b{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),var(--orange),transparent);}
+    .car-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+    .car-wrap svg{filter:drop-shadow(0 16px 48px rgba(255,107,53,.22));}
+    .gear-spin{position:absolute;opacity:.07;animation:gspin 22s linear infinite;}
+    .gear-spin.g1{width:340px;height:340px;right:-80px;top:50%;margin-top:-170px;}
+    .gear-spin.g2{width:160px;height:160px;left:-40px;bottom:-40px;animation-duration:14s;animation-direction:reverse;}
+    @keyframes gspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .badge{position:absolute;background:var(--card);border:1px solid var(--border);padding:11px 16px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+    .badge-1{top:28px;right:16px;animation:fl1 4s ease-in-out infinite;}
+    .badge-2{bottom:52px;left:16px;animation:fl2 5s ease-in-out infinite;}
+    @keyframes fl1{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @keyframes fl2{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    .badge-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--orange);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;}
+    .badge-val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--white);}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    /* Ticker */
+    .ticker{background:var(--red);padding:13px 0;overflow:hidden;}
+    .ticker-track{display:flex;animation:tick 22s linear infinite;white-space:nowrap;}
+    .ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 36px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#fff;flex-shrink:0;}
+    .ticker-item span{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;display:inline-block;}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* Section commons */
+    .wrap{max-width:1380px;margin:0 auto;padding:0 52px;}
+    .eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+    .eyebrow::before{content:'';width:28px;height:1px;background:var(--orange);}
+    .sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(38px,5vw,68px);line-height:.93;text-transform:uppercase;letter-spacing:-.5px;}
+    .sec-title em{color:var(--orange);font-style:normal;}
+
+    /* Services */
+    #layanan{padding:110px 0;background:var(--dark);position:relative;}
+    #layanan::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
+    .sec-hdr{margin-bottom:56px;}
+    .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+    .svc-card{background:var(--card);padding:38px 30px;position:relative;overflow:hidden;transition:transform .3s,background .3s;cursor:default;}
+    .svc-card::before{content:'';position:absolute;top:0;left:0;width:2.5px;height:0;background:linear-gradient(180deg,var(--orange),var(--red));transition:height .4s;}
+    .svc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,53,.06) 0%,transparent 60%);opacity:0;transition:opacity .3s;}
+    .svc-card:hover{transform:translateY(-3px);background:#191920;}
+    .svc-card:hover::before{height:100%;}
+    .svc-card:hover::after{opacity:1;}
+    .svc-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:2px;color:var(--gray);margin-bottom:22px;}
+    .svc-icon{width:48px;height:48px;color:var(--orange);margin-bottom:22px;transition:transform .3s,color .3s;}
+    .svc-card:hover .svc-icon{transform:scale(1.1);color:var(--red);}
+    .svc-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+    .svc-desc{color:var(--gray);font-size:13.5px;line-height:1.65;margin-bottom:24px;}
+    .svc-price{font-family:'DM Mono',monospace;font-size:10px;color:var(--orange);border:1px solid rgba(255,107,53,.3);padding:4px 10px;letter-spacing:1.5px;text-transform:uppercase;display:inline-block;}
+
+    /* Why */
+    #keunggulan{padding:110px 0;background:var(--black);}
+    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .why-sub{color:var(--silver);font-size:15px;line-height:1.75;margin-top:20px;}
+    .features{display:flex;flex-direction:column;}
+    .feat{display:flex;gap:22px;padding:26px 0;border-bottom:1px solid var(--border);}
+    .feat:first-child{border-top:1px solid var(--border);}
+    .feat:hover .feat-num{color:var(--orange);}
+    .feat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:1px;color:var(--gray);min-width:28px;padding-top:3px;transition:color .2s;}
+    .feat-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+    .feat-desc{color:var(--gray);font-size:13.5px;line-height:1.6;}
+    .stats-2x2{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+    .stat-box{background:var(--card);padding:34px 30px;position:relative;overflow:hidden;}
+    .stat-box::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);transform:scaleX(0);transform-origin:left;transition:transform .7s ease;}
+    .stat-box.inview::after{transform:scaleX(1);}
+    .stat-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;line-height:1;color:var(--white);}
+    .stat-n .ac{color:var(--orange);}
+    .stat-l{font-size:12px;color:var(--gray);margin-top:6px;letter-spacing:.5px;}
+
+    /* Testimonials */
+    #testimoni{padding:110px 0;background:var(--dark);overflow:hidden;}
+    .t-scroll{overflow-x:auto;scrollbar-width:none;margin-top:60px;}
+    .t-scroll::-webkit-scrollbar{display:none;}
+    .t-track{display:flex;gap:18px;padding:0 52px;width:max-content;}
+    .t-card{width:350px;flex-shrink:0;background:var(--card);padding:34px;border:1px solid var(--border);position:relative;transition:border-color .3s,transform .3s;}
+    .t-card:hover{border-color:rgba(255,107,53,.3);transform:translateY(-3px);}
+    .t-stars{position:absolute;top:28px;right:28px;display:flex;gap:2px;color:var(--orange);font-size:12px;}
+    .t-quote{font-family:'Barlow Condensed',sans-serif;font-size:72px;line-height:.65;color:var(--orange);opacity:.25;margin-bottom:10px;}
+    .t-text{color:var(--silver);font-size:14px;line-height:1.7;margin-bottom:24px;}
+    .t-author{display:flex;align-items:center;gap:12px;}
+    .t-avatar{width:42px;height:42px;background:linear-gradient(135deg,var(--orange),var(--red));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#fff;flex-shrink:0;}
+    .t-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.5px;}
+    .t-role{font-size:11px;color:var(--gray);margin-top:2px;}
+    .t-dots{display:flex;gap:7px;justify-content:center;margin-top:28px;}
+    .tdot{width:22px;height:3px;background:var(--border);cursor:pointer;transition:all .3s;}
+    .tdot.active{width:44px;background:var(--orange);}
+
+    /* Contact */
+    #kontak{padding:110px 0;background:var(--black);position:relative;overflow:hidden;}
+    #kontak::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:650px;height:650px;background:radial-gradient(circle,rgba(232,58,46,.1) 0%,transparent 68%);pointer-events:none;}
+    .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .cta-sub{color:var(--silver);font-size:15px;line-height:1.75;margin:18px 0 32px;}
+    .contact-items{display:flex;flex-direction:column;gap:14px;}
+    .c-item{display:flex;align-items:center;gap:14px;color:var(--silver);font-size:14px;}
+    .c-icon{width:38px;height:38px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--orange);flex-shrink:0;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+    .form-box{background:var(--card);border:1px solid var(--border);padding:44px;position:relative;}
+    .form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,var(--orange),var(--red));}
+    .f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .f-grp{margin-bottom:18px;}
+    .f-grp label{display:block;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:7px;}
+    .f-grp input,.f-grp select,.f-grp textarea{width:100%;background:var(--dark);border:1px solid var(--border);color:var(--white);padding:11px 14px;font-family:'Syne',sans-serif;font-size:13.5px;outline:none;transition:border-color .2s;appearance:none;}
+    .f-grp input:focus,.f-grp select:focus,.f-grp textarea:focus{border-color:var(--orange);}
+    .f-grp textarea{resize:none;height:90px;}
+    .f-grp select option{background:var(--dark);}
+    .f-submit{width:100%;background:linear-gradient(90deg,var(--orange),var(--red));color:#fff;padding:15px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:opacity .2s,transform .2s;}
+    .f-submit:hover{opacity:.88;transform:translateY(-1px);}
+
+    /* Footer */
+    footer{background:#080808;border-top:1px solid var(--border);padding:36px 0;}
+    .foot-inner{max-width:1380px;margin:0 auto;padding:0 52px;display:flex;align-items:center;justify-content:space-between;}
+    .foot-copy{font-size:12px;color:var(--gray);}
+    .foot-copy b{color:var(--orange);}
+    .foot-links{display:flex;gap:28px;list-style:none;}
+    .foot-links a{font-size:11px;color:var(--gray);text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:color .2s;}
+    .foot-links a:hover{color:var(--white);}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+    .reveal.vis{opacity:1;transform:translateY(0);}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+    /* Toast */
+    .toast{position:fixed;bottom:28px;right:28px;background:var(--card);border:1px solid var(--orange);border-left:3px solid var(--orange);padding:14px 22px;color:var(--white);font-size:13.5px;z-index:1000;transform:translateY(80px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);}
+    .toast.show{transform:translateY(0);opacity:1;}
+    .toast-t{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;letter-spacing:1px;color:var(--orange);margin-bottom:3px;}
+
+    /* Responsive */
+    @media(max-width:1024px){
+      .svc-grid{grid-template-columns:repeat(2,1fr);}
+      .hero-inner,.why-grid,.cta-grid{grid-template-columns:1fr;}
+      .hero-visual{display:none;}
     }
-
-    /* ── NAV ─────────────────────────────────────────────────── */
-    nav {
-      position:fixed; top:0; left:0; right:0; z-index:100;
-      height: 64px;
-      padding: 0 var(--s6);
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      transition: box-shadow .3s;
-    }
-    nav.scrolled { box-shadow: var(--sh-sm); }
-
-    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .logo-mark {
-      width:32px; height:32px;
-      background: var(--primary);
-      border-radius: var(--r-md);
-      display:flex; align-items:center; justify-content:center;
-      color: var(--secondary);
-      font-family: var(--ff-d); font-weight:800; font-size:13px;
-    }
-    .logo-text { font-family:var(--ff-d); font-weight:700; font-size:17px; color:var(--primary); letter-spacing:-.3px; }
-    .logo-text b { color:var(--accent); }
-
-    .nav-links { display:flex; gap:32px; list-style:none; }
-    .nav-links a {
-      color:var(--surface); text-decoration:none;
-      font-family:var(--ff-d); font-size:var(--t14); font-weight:500;
-      transition:color .2s;
-    }
-    .nav-links a:hover { color:var(--primary); }
-
-    /* OnePlus button token: radius 999px, bg #000, text #fff, padding 0 16px */
-    .nav-cta {
-      display:inline-flex; align-items:center;
-      height:36px; padding:0 var(--s2);
-      background:var(--primary); color:var(--secondary);
-      font-family:var(--ff-d); font-weight:600; font-size:var(--t14);
-      border-radius:var(--r-xl); border:1px solid rgba(0,0,0,.12);
-      text-decoration:none; white-space:nowrap;
-      transition:opacity .2s;
-    }
-    .nav-cta:hover { opacity:.78; }
-
-    .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
-    .nav-toggle span { width:22px; height:1.5px; background:var(--primary); display:block; }
-
-    /* ── HERO ────────────────────────────────────────────────── */
-    .hero {
-      min-height:100vh; padding-top:64px;
-      display:flex; align-items:center;
-      background:linear-gradient(160deg,#f7f7f7 0%,var(--bg) 55%);
-      overflow:hidden; position:relative;
-    }
-    .hero-inner {
-      max-width:1280px; margin:0 auto; padding:0 var(--s6);
-      width:100%;
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:var(--s10); align-items:center;
-    }
-
-    .hero-badge {
-      display:inline-flex; align-items:center; gap:6px;
-      background:rgba(0,0,0,.05); border:1px solid var(--border);
-      border-radius:var(--r-xl); padding:4px 12px;
-      font-family:var(--ff-d); font-size:var(--t21); font-weight:500; color:var(--surface);
-      margin-bottom:var(--s3);
-      opacity:0; animation:fadeUp .7s ease .2s forwards;
-    }
-    .badge-dot { width:6px; height:6px; background:var(--accent); border-radius:50%; animation:blink 1.5s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-
-    .hero-title {
-      font-family:var(--ff-d); font-weight:800;
-      font-size:clamp(var(--t1),5.5vw,64px); line-height:1.08;
-      letter-spacing:-2px; color:var(--primary);
-      opacity:0; animation:fadeUp .8s ease .35s forwards;
-    }
-    .hero-title em { font-style:normal; color:var(--accent); }
-
-    .hero-sub {
-      margin-top:var(--s3); color:var(--surface);
-      font-size:var(--t8); line-height:var(--lh8); max-width:440px;
-      opacity:0; animation:fadeUp .8s ease .5s forwards;
-    }
-
-    .hero-actions {
-      margin-top:var(--s5); display:flex; align-items:center; gap:var(--s2);
-      opacity:0; animation:fadeUp .8s ease .65s forwards;
-    }
-
-    .btn-primary {
-      display:inline-flex; align-items:center;
-      height:48px; padding:0 var(--s4);
-      background:var(--primary); color:var(--secondary);
-      font-family:var(--ff-d); font-weight:600; font-size:var(--t9);
-      border-radius:var(--r-xl); border:1px solid rgba(0,0,0,.12);
-      text-decoration:none; transition:opacity .2s, transform .2s;
-    }
-    .btn-primary:hover { opacity:.8; transform:translateY(-1px); }
-
-    .btn-ghost {
-      display:inline-flex; align-items:center;
-      height:48px; padding:0 var(--s4);
-      background:transparent; color:var(--primary);
-      font-family:var(--ff-d); font-weight:600; font-size:var(--t9);
-      border-radius:var(--r-xl); border:1px solid var(--border-hi);
-      text-decoration:none; transition:border-color .2s, background .2s;
-    }
-    .btn-ghost:hover { border-color:var(--primary); background:rgba(0,0,0,.03); }
-
-    .hero-stats {
-      display:flex; gap:var(--s6);
-      margin-top:var(--s8); padding-top:var(--s4);
-      border-top:1px solid var(--border);
-      opacity:0; animation:fadeUp .8s ease .8s forwards;
-    }
-    .hstat-num {
-      font-family:var(--ff-d); font-weight:800;
-      font-size:var(--t1); line-height:var(--lh1);
-      letter-spacing:-1.5px;
-    }
-    .hstat-num em { color:var(--accent); font-style:normal; }
-    .hstat-label { font-family:var(--ff-d); font-size:var(--t21); color:var(--surface); margin-top:4px; }
-
-    /* hero visual */
-    .hero-visual { position:relative; height:480px; opacity:0; animation:fadeIn 1s ease .4s forwards; }
-    .hero-img-wrap {
-      position:absolute; inset:0;
-      background:var(--bg-alt);
-      border-radius:var(--r-lg);
-      box-shadow:var(--sh-lg);
-      display:flex; align-items:center; justify-content:center;
-      overflow:hidden;
-    }
-    .hero-img-wrap svg { filter:drop-shadow(0 10px 32px rgba(0,0,0,.14)); }
-
-    .hero-card {
-      position:absolute;
-      background:var(--secondary);
-      border-radius:var(--r-lg);
-      padding:14px 18px;
-      box-shadow:var(--sh-md);
-      border:1px solid var(--border);
-    }
-    .hero-card-1 { top:24px; right:-16px; animation:fl1 4s ease-in-out infinite; }
-    .hero-card-2 { bottom:48px; left:-16px; animation:fl2 5s ease-in-out infinite; }
-    @keyframes fl1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    @keyframes fl2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-    .card-label { font-family:var(--ff-d); font-size:var(--t21); color:var(--surface); margin-bottom:2px; }
-    .card-val { font-family:var(--ff-d); font-weight:700; font-size:var(--t5); line-height:var(--lh5); }
-
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-    /* ── TICKER ──────────────────────────────────────────────── */
-    .ticker { background:var(--primary); padding:12px 0; overflow:hidden; }
-    .ticker-track { display:flex; animation:tick 24s linear infinite; white-space:nowrap; }
-    .ticker-item {
-      display:inline-flex; align-items:center; gap:16px;
-      padding:0 32px; flex-shrink:0;
-      font-family:var(--ff-d); font-weight:500; font-size:var(--t14);
-      color:var(--secondary);
-    }
-    .ticker-item span { width:4px; height:4px; background:rgba(255,255,255,.35); border-radius:50%; display:inline-block; }
-    @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-    /* ── SHARED SECTION ──────────────────────────────────────── */
-    .wrap { max-width:1280px; margin:0 auto; padding:0 var(--s6); }
-
-    .eyebrow {
-      display:inline-block;
-      font-family:var(--ff-d); font-size:var(--t21); font-weight:500;
-      color:var(--surface); letter-spacing:.3px; margin-bottom:12px;
-    }
-    .sec-title {
-      font-family:var(--ff-d); font-weight:800;
-      font-size:clamp(var(--t3),3.5vw,48px);
-      line-height:1.08; letter-spacing:-1px;
-    }
-    .sec-title em { color:var(--accent); font-style:normal; }
-
-    /* ── SERVICES ────────────────────────────────────────────── */
-    #layanan { padding:var(--s15) 0; background:var(--bg-alt); }
-    .sec-hdr { margin-bottom:var(--s8); }
-
-    .svc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--s3); }
-
-    .svc-card {
-      background:var(--secondary);
-      border-radius:var(--r-lg);
-      padding:var(--s5);
-      border:1px solid var(--border);
-      box-shadow:var(--sh-sm);
-      transition:box-shadow .3s, transform .3s;
-      cursor:default;
-    }
-    .svc-card:hover { box-shadow:var(--sh-lg); transform:translateY(-4px); }
-
-    .svc-num { font-family:var(--ff-d); font-size:var(--t21); font-weight:500; color:var(--surface); margin-bottom:var(--s3); }
-    .svc-icon { width:44px; height:44px; color:var(--primary); margin-bottom:var(--s3); transition:color .3s; }
-    .svc-card:hover .svc-icon { color:var(--accent); }
-    .svc-name { font-family:var(--ff-d); font-weight:700; font-size:var(--t5); line-height:var(--lh5); margin-bottom:8px; }
-    .svc-desc { color:var(--surface); font-size:var(--t14); line-height:1.6; margin-bottom:var(--s3); }
-    .svc-price {
-      display:inline-block; font-family:var(--ff-d); font-size:var(--t21); font-weight:500;
-      background:rgba(0,0,0,.06); border-radius:var(--r-xl); padding:4px 12px;
-    }
-
-    /* ── WHY ─────────────────────────────────────────────────── */
-    #keunggulan { padding:var(--s15) 0; background:var(--bg); }
-
-    .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--s10); align-items:center; }
-    .why-sub { color:var(--surface); font-size:var(--t8); line-height:var(--lh8); margin-top:var(--s3); }
-
-    .features { display:flex; flex-direction:column; margin-top:var(--s5); }
-    .feat { display:flex; gap:var(--s3); padding:var(--s3) 0; border-bottom:1px solid var(--border); }
-    .feat:first-child { border-top:1px solid var(--border); }
-    .feat-num { font-family:var(--ff-d); font-size:var(--t21); font-weight:500; color:var(--surface); min-width:28px; padding-top:3px; }
-    .feat-title { font-family:var(--ff-d); font-weight:700; font-size:var(--t8); line-height:var(--lh8); margin-bottom:6px; }
-    .feat-desc { color:var(--surface); font-size:var(--t14); line-height:1.6; }
-
-    .stats-2x2 {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:1px; background:var(--border);
-      border-radius:var(--r-lg); overflow:hidden;
-      box-shadow:var(--sh-sm);
-    }
-    .stat-box { background:var(--secondary); padding:var(--s5); }
-    .stat-n { font-family:var(--ff-d); font-weight:800; font-size:clamp(var(--t1),4vw,52px); letter-spacing:-2px; }
-    .stat-n .ac { color:var(--accent); }
-    .stat-l { font-family:var(--ff-d); font-size:var(--t21); color:var(--surface); margin-top:6px; }
-
-    /* ── TESTIMONIALS ────────────────────────────────────────── */
-    #testimoni { padding:var(--s15) 0; background:var(--bg-alt); overflow:hidden; }
-    .t-scroll { overflow-x:auto; scrollbar-width:none; margin-top:var(--s8); }
-    .t-scroll::-webkit-scrollbar { display:none; }
-    .t-track { display:flex; gap:var(--s3); padding:0 var(--s6); width:max-content; }
-
-    .t-card {
-      width:340px; flex-shrink:0;
-      background:var(--secondary);
-      border-radius:var(--r-lg);
-      padding:var(--s4);
-      border:1px solid var(--border);
-      box-shadow:var(--sh-sm);
-      transition:box-shadow .3s, transform .3s;
-    }
-    .t-card:hover { box-shadow:var(--sh-md); transform:translateY(-3px); }
-    .t-stars { display:flex; gap:2px; font-size:13px; margin-bottom:16px; }
-    .t-text { color:var(--surface); font-size:var(--t9); line-height:var(--lh9); margin-bottom:var(--s3); }
-    .t-author { display:flex; align-items:center; gap:12px; }
-    .t-avatar {
-      width:40px; height:40px; background:var(--primary); border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-family:var(--ff-d); font-weight:700; font-size:13px; color:var(--secondary); flex-shrink:0;
-    }
-    .t-name { font-family:var(--ff-d); font-weight:700; font-size:var(--t9); }
-    .t-role { font-size:var(--t21); color:var(--surface); margin-top:2px; }
-
-    .t-dots { display:flex; gap:6px; justify-content:center; margin-top:var(--s4); }
-    .tdot { width:20px; height:2px; background:var(--border-hi); cursor:pointer; border-radius:var(--r-xl); transition:all .3s; }
-    .tdot.active { width:40px; background:var(--primary); }
-
-    /* ── CONTACT ─────────────────────────────────────────────── */
-    #kontak { padding:var(--s15) 0; background:var(--bg); }
-    .cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--s10); align-items:start; }
-    .cta-sub { color:var(--surface); font-size:var(--t8); line-height:var(--lh8); margin:var(--s3) 0 var(--s4); }
-
-    .contact-items { display:flex; flex-direction:column; gap:14px; }
-    .c-item { display:flex; align-items:center; gap:12px; font-size:var(--t9); }
-    .c-icon {
-      width:36px; height:36px;
-      background:rgba(0,0,0,.05);
-      border-radius:var(--r-lg);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--primary); flex-shrink:0;
-    }
-
-    /* form — OnePlus input token: radius 4px */
-    .form-box {
-      background:var(--secondary);
-      border-radius:var(--r-lg);
-      padding:var(--s6);
-      border:1px solid var(--border);
-      box-shadow:var(--sh-sm);
-    }
-    .f-row { display:grid; grid-template-columns:1fr 1fr; gap:var(--s2); }
-    .f-grp { margin-bottom:var(--s3); }
-    .f-grp label {
-      display:block; font-family:var(--ff-d);
-      font-size:var(--t21); font-weight:500; color:var(--surface); margin-bottom:6px;
-    }
-    .f-grp input, .f-grp select, .f-grp textarea {
-      width:100%; background:var(--bg-alt);
-      border:1px solid var(--border); color:var(--primary);
-      padding:0 var(--s2); height:44px;
-      font-family:var(--ff-b); font-size:var(--t9);
-      outline:none; border-radius:var(--r-md); /* 4px — OnePlus input token */
-      appearance:none; transition:border-color .2s, box-shadow .2s;
-    }
-    .f-grp input:focus, .f-grp select:focus, .f-grp textarea:focus {
-      border-color:var(--primary);
-      box-shadow:0 0 0 3px rgba(0,0,0,.06);
-    }
-    .f-grp textarea { height:88px; padding:var(--s2); resize:none; }
-    .f-grp select option { background:var(--bg); }
-
-    /* OnePlus button token: pill 999px, #000, #fff, padding 0 16px */
-    .f-submit {
-      width:100%; height:48px;
-      background:var(--primary); color:var(--secondary);
-      font-family:var(--ff-d); font-weight:600; font-size:var(--t9);
-      border:1px solid rgba(0,0,0,.12);
-      border-radius:var(--r-xl);
-      cursor:pointer; transition:opacity .2s, transform .2s;
-    }
-    .f-submit:hover { opacity:.8; transform:translateY(-1px); }
-
-    /* ── FOOTER ──────────────────────────────────────────────── */
-    footer { background:var(--primary); padding:var(--s5) 0; }
-    .foot-inner {
-      max-width:1280px; margin:0 auto; padding:0 var(--s6);
-      display:flex; align-items:center; justify-content:space-between;
-    }
-    .foot-copy { font-family:var(--ff-d); font-size:var(--t21); color:rgba(255,255,255,.45); }
-    .foot-copy b { color:var(--secondary); }
-    .foot-links { display:flex; gap:var(--s4); list-style:none; }
-    .foot-links a { font-family:var(--ff-d); font-size:var(--t21); color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s; }
-    .foot-links a:hover { color:var(--secondary); }
-
-    /* ── REVEAL ──────────────────────────────────────────────── */
-    .reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
-    .reveal.vis { opacity:1; transform:translateY(0); }
-    .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
-
-    /* ── TOAST ───────────────────────────────────────────────── */
-    .toast {
-      position:fixed; bottom:24px; right:24px;
-      background:var(--secondary); border:1px solid var(--border);
-      border-radius:var(--r-lg); padding:14px 20px;
-      box-shadow:var(--sh-lg); z-index:1000;
-      transform:translateY(60px); opacity:0;
-      transition:all .4s cubic-bezier(.34,1.56,.64,1);
-      max-width:300px;
-    }
-    .toast.show { transform:translateY(0); opacity:1; }
-    .toast-t { font-family:var(--ff-d); font-weight:700; font-size:var(--t8); margin-bottom:3px; }
-    .toast-sub { color:var(--surface); font-size:var(--t14); }
-
-    /* ── RESPONSIVE ──────────────────────────────────────────── */
-    @media(max-width:1024px) {
-      .svc-grid { grid-template-columns:repeat(2,1fr); }
-      .hero-inner, .why-grid, .cta-grid { grid-template-columns:1fr; }
-      .hero-visual { display:none; }
-    }
-    @media(max-width:768px) {
-      nav { padding:0 24px; }
-      .nav-links, .nav-cta { display:none; }
-      .nav-toggle { display:flex; }
-      .wrap, .hero-inner { padding-left:24px; padding-right:24px; }
-      .t-track { padding:0 24px; }
-      .svc-grid { grid-template-columns:1fr; }
-      .f-row { grid-template-columns:1fr; }
-      .form-box { padding:28px 20px; }
-      .foot-inner { flex-direction:column; gap:16px; padding:0 24px; text-align:center; }
-      .hero-stats { flex-wrap:wrap; gap:24px; }
+    @media(max-width:768px){
+      nav{padding:0 24px;}
+      .nav-links,.nav-cta{display:none;}
+      .nav-toggle{display:flex;}
+      .wrap,.hero-inner,.t-track{padding-left:24px;padding-right:24px;}
+      .svc-grid{grid-template-columns:1fr;}
+      .stats-2x2{grid-template-columns:1fr 1fr;}
+      .f-row{grid-template-columns:1fr;}
+      .form-box{padding:28px 20px;}
+      .foot-inner{flex-direction:column;gap:18px;padding:0 24px;text-align:center;}
+      .hero-stats{flex-wrap:wrap;gap:24px;}
     }
   </style>
 </head>
 <body>
 
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="curRing"></div>
+
 <div class="toast" id="toast">
   <div class="toast-t">Booking Diterima!</div>
-  <div class="toast-sub">Tim kami akan segera menghubungi Anda.</div>
+  Tim kami akan menghubungi Anda segera.
 </div>
 
 <!-- NAV -->
@@ -457,10 +243,11 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
+  <div class="hero-glow"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><span class="badge-dot"></span>Bengkel Terpercaya Sejak 2008</div>
-      <h1 class="hero-title">Mobil Anda<br>Layak <em>Yang</em><br><em>Terbaik</em></h1>
+      <div class="hero-tag"><span class="tag-dot"></span>Bengkel Terpercaya Sejak 2008</div>
+      <h1 class="hero-title">Mobil Anda<br><span class="accent">Layak</span><br>Yang Terbaik</h1>
       <p class="hero-sub">AutoCare Pro hadir dengan teknisi berpengalaman, peralatan modern, dan standar servis tertinggi. Kami merawat kendaraan Anda seperti milik kami sendiri.</p>
       <div class="hero-actions">
         <a href="#kontak" class="btn-primary">Booking Servis</a>
@@ -482,41 +269,57 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-img-wrap">
-        <svg width="400" height="200" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M50 158L82 158Q92 138 124 108L184 83L316 83L376 108Q408 138 418 158L450 158Q470 158 470 173L470 184Q470 189 465 189L35 189Q30 189 30 184L30 173Q30 158 50 158Z" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
-          <path d="M142 108L172 68L328 68L358 108Z" fill="#222" stroke="#333" stroke-width="1.5"/>
-          <path d="M162 106L188 70L312 70L338 106Z" fill="#1a2535" stroke="#253040" stroke-width="1" opacity=".9"/>
-          <path d="M196 104L207 72L278 72L278 104Z" fill="#1c2840" stroke="#2a3850" stroke-width="1" opacity=".8"/>
-          <path d="M283 104L283 72L308 72L326 104Z" fill="#1c2840" stroke="#2a3850" stroke-width="1" opacity=".8"/>
-          <line x1="280" y1="72" x2="280" y2="105" stroke="#2a3850" stroke-width="1.5" opacity=".6"/>
-          <path d="M68 143Q200 132 432 143" stroke="#E83A2E" stroke-width="1.5" opacity=".5"/>
-          <path d="M55 153L82 132L102 138L86 162Z" fill="#2a2a2a" stroke="#E83A2E" stroke-width="1.5"/>
-          <path d="M416 138L442 147L444 162L420 162Z" fill="#221818" stroke="#E83A2E" stroke-width="1.5"/>
-          <circle cx="120" cy="184" r="28" fill="#111" stroke="#333" stroke-width="2"/>
-          <circle cx="120" cy="184" r="20" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
-          <circle cx="120" cy="184" r="7" fill="#222" stroke="#000" stroke-width="1.5"/>
-          <line x1="100" y1="184" x2="140" y2="184" stroke="#333" stroke-width="2"/>
-          <line x1="120" y1="164" x2="120" y2="204" stroke="#333" stroke-width="2"/>
-          <line x1="106" y1="170" x2="134" y2="198" stroke="#333" stroke-width="1.5"/>
-          <line x1="134" y1="170" x2="106" y2="198" stroke="#333" stroke-width="1.5"/>
-          <circle cx="380" cy="184" r="28" fill="#111" stroke="#333" stroke-width="2"/>
-          <circle cx="380" cy="184" r="20" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
-          <circle cx="380" cy="184" r="7" fill="#222" stroke="#000" stroke-width="1.5"/>
-          <line x1="360" y1="184" x2="400" y2="184" stroke="#333" stroke-width="2"/>
-          <line x1="380" y1="164" x2="380" y2="204" stroke="#333" stroke-width="2"/>
-          <line x1="366" y1="170" x2="394" y2="198" stroke="#333" stroke-width="1.5"/>
-          <line x1="394" y1="170" x2="366" y2="198" stroke="#333" stroke-width="1.5"/>
-          <ellipse cx="250" cy="212" rx="188" ry="8" fill="rgba(0,0,0,.1)"/>
+      <div class="hero-frame">
+        <div class="hero-frame-accent"></div>
+        <!-- Gear backgrounds -->
+        <svg class="gear-spin g1" viewBox="0 0 200 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 0C95 0 90.5 4 89.5 9L87 22C82 23.5 77 25.5 72.5 28L61 21C57 18.5 52 19 49 22L36 35C33 38 32.5 43 35 47L42 58.5C39.5 63 37.5 68 36 73L23 75.5C18 76.5 14 81 14 86V114C14 119 18 123.5 23 124.5L36 127C37.5 132 39.5 137 42 141.5L35 153C32.5 157 33 162 36 165L49 178C52 181 57 181.5 61 179L72.5 172C77 174.5 82 176.5 87 178L89.5 191C90.5 196 95 200 100 200C105 200 109.5 196 110.5 191L113 178C118 176.5 123 174.5 127.5 172L139 179C143 181.5 148 181 151 178L164 165C167 162 167.5 157 165 153L158 141.5C160.5 137 162.5 132 164 127L177 124.5C182 123.5 186 119 186 114V86C186 81 182 76.5 177 75.5L164 73C162.5 68 160.5 63 158 58.5L165 47C167.5 43 167 38 164 35L151 22C148 19 143 18.5 139 21L127.5 28C123 25.5 118 23.5 113 22L110.5 9C109.5 4 105 0 100 0ZM100 65C117 65 131 79 131 96C131 113 117 127 100 127C83 127 69 113 69 96C69 79 83 65 100 65Z"/>
         </svg>
-      </div>
-      <div class="hero-card hero-card-1">
-        <div class="card-label">Status</div>
-        <div class="card-val">✓ Siap</div>
-      </div>
-      <div class="hero-card hero-card-2">
-        <div class="card-label">Waktu Servis</div>
-        <div class="card-val">2–4 Jam</div>
+        <svg class="gear-spin g2" viewBox="0 0 200 200" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 0C95 0 90.5 4 89.5 9L87 22C82 23.5 77 25.5 72.5 28L61 21C57 18.5 52 19 49 22L36 35C33 38 32.5 43 35 47L42 58.5C39.5 63 37.5 68 36 73L23 75.5C18 76.5 14 81 14 86V114C14 119 18 123.5 23 124.5L36 127C37.5 132 39.5 137 42 141.5L35 153C32.5 157 33 162 36 165L49 178C52 181 57 181.5 61 179L72.5 172C77 174.5 82 176.5 87 178L89.5 191C90.5 196 95 200 100 200C105 200 109.5 196 110.5 191L113 178C118 176.5 123 174.5 127.5 172L139 179C143 181.5 148 181 151 178L164 165C167 162 167.5 157 165 153L158 141.5C160.5 137 162.5 132 164 127L177 124.5C182 123.5 186 119 186 114V86C186 81 182 76.5 177 75.5L164 73C162.5 68 160.5 63 158 58.5L165 47C167.5 43 167 38 164 35L151 22C148 19 143 18.5 139 21L127.5 28C123 25.5 118 23.5 113 22L110.5 9C109.5 4 105 0 100 0ZM100 65C117 65 131 79 131 96C131 113 117 127 100 127C83 127 69 113 69 96C69 79 83 65 100 65Z"/>
+        </svg>
+        <!-- Car illustration -->
+        <div class="car-wrap">
+          <svg width="430" height="220" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 158 L82 158 Q92 138 124 108 L184 83 L316 83 L376 108 Q408 138 418 158 L450 158 Q470 158 470 173 L470 184 Q470 189 465 189 L35 189 Q30 189 30 184 L30 173 Q30 158 50 158Z" fill="#1a1a20" stroke="#2a2a35" stroke-width="2"/>
+            <path d="M142 108 L172 68 L328 68 L358 108Z" fill="#222230" stroke="#2e2e40" stroke-width="1.5"/>
+            <path d="M162 106 L188 70 L312 70 L338 106Z" fill="#1a2535" stroke="#2a3545" stroke-width="1" opacity=".85"/>
+            <path d="M196 104 L207 72 L278 72 L278 104Z" fill="#1c2840" stroke="#2a3850" stroke-width="1" opacity=".75"/>
+            <path d="M283 104 L283 72 L308 72 L326 104Z" fill="#1c2840" stroke="#2a3850" stroke-width="1" opacity=".75"/>
+            <line x1="280" y1="72" x2="280" y2="105" stroke="#2a3850" stroke-width="1.5" opacity=".6"/>
+            <path d="M68 143 Q200 130 432 143" stroke="#FF6B35" stroke-width="1.5" opacity=".45"/>
+            <path d="M55 153 L82 132 L102 138 L86 162Z" fill="#242430" stroke="#FF6B35" stroke-width="1.5"/>
+            <path d="M60 150 L80 134 L97 139 L83 158Z" fill="rgba(255,200,80,.12)"/>
+            <line x1="60" y1="154" x2="84" y2="157" stroke="#FF6B35" stroke-width="2" opacity=".7"/>
+            <path d="M416 138 L442 147 L444 162 L420 162Z" fill="#221818" stroke="#E83A2E" stroke-width="1.5"/>
+            <path d="M419 140 L439 148 L441 160 L422 160Z" fill="rgba(232,58,46,.2)"/>
+            <circle cx="120" cy="184" r="29" fill="#0c0c10" stroke="#2a2a38" stroke-width="2"/>
+            <circle cx="120" cy="184" r="21" fill="#111118" stroke="#383848" stroke-width="1.5"/>
+            <circle cx="120" cy="184" r="7" fill="#1a1a22" stroke="#FF6B35" stroke-width="1.5"/>
+            <line x1="99" y1="184" x2="141" y2="184" stroke="#242432" stroke-width="2"/>
+            <line x1="120" y1="163" x2="120" y2="205" stroke="#242432" stroke-width="2"/>
+            <line x1="105" y1="169" x2="135" y2="199" stroke="#242432" stroke-width="1.5"/>
+            <line x1="135" y1="169" x2="105" y2="199" stroke="#242432" stroke-width="1.5"/>
+            <circle cx="380" cy="184" r="29" fill="#0c0c10" stroke="#2a2a38" stroke-width="2"/>
+            <circle cx="380" cy="184" r="21" fill="#111118" stroke="#383848" stroke-width="1.5"/>
+            <circle cx="380" cy="184" r="7" fill="#1a1a22" stroke="#FF6B35" stroke-width="1.5"/>
+            <line x1="359" y1="184" x2="401" y2="184" stroke="#242432" stroke-width="2"/>
+            <line x1="380" y1="163" x2="380" y2="205" stroke="#242432" stroke-width="2"/>
+            <line x1="365" y1="169" x2="395" y2="199" stroke="#242432" stroke-width="1.5"/>
+            <line x1="395" y1="169" x2="365" y2="199" stroke="#242432" stroke-width="1.5"/>
+            <ellipse cx="250" cy="214" rx="195" ry="9" fill="rgba(0,0,0,.35)"/>
+          </svg>
+        </div>
+        <!-- Badges -->
+        <div class="badge badge-1">
+          <div class="badge-label">Status</div>
+          <div class="badge-val">✓ SIAP</div>
+        </div>
+        <div class="badge badge-2">
+          <div class="badge-label">Waktu Servis</div>
+          <div class="badge-val">2–4 JAM</div>
+        </div>
+        <div class="hero-frame-accent-b"></div>
       </div>
     </div>
   </div>
@@ -552,6 +355,7 @@
       <h2 class="sec-title">Solusi <em>Lengkap</em><br>Untuk Kendaraan Anda</h2>
     </div>
     <div class="svc-grid">
+
       <div class="svc-card reveal d1">
         <div class="svc-num">01</div>
         <svg class="svc-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -564,40 +368,49 @@
         <p class="svc-desc">Perawatan berkala menyeluruh untuk menjaga performa kendaraan tetap optimal. Pemeriksaan 30+ titik oleh teknisi bersertifikat.</p>
         <span class="svc-price">Mulai Rp 150.000</span>
       </div>
+
       <div class="svc-card reveal d2">
         <div class="svc-num">02</div>
         <svg class="svc-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M20 8h12l2 9H18L20 8Z"/><path d="M16 17h20l2 24H14L16 17Z"/>
-          <path d="M22 25v12M30 25v12M14 21h24"/>
+          <path d="M20 8h12l2 9H18L20 8Z"/>
+          <path d="M16 17h20l2 24H14L16 17Z"/>
+          <path d="M22 25v12M30 25v12"/>
+          <path d="M14 21h24"/>
           <circle cx="26" cy="45" r="2" fill="currentColor" stroke="none"/>
         </svg>
         <div class="svc-name">Ganti Oli</div>
         <p class="svc-desc">Penggantian oli mesin &amp; filter dengan pelumas berkualitas tinggi. Tersedia pilihan synthetic, semi-synthetic, dan mineral.</p>
         <span class="svc-price">Mulai Rp 80.000</span>
       </div>
+
       <div class="svc-card reveal d3">
         <div class="svc-num">03</div>
         <svg class="svc-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <rect x="10" y="16" width="32" height="22" rx="2"/>
-          <path d="M16 10h20v6H16V10ZM18 23h16M18 29h10M4 20v12M48 20v12"/>
+          <path d="M16 10h20v6H16V10Z"/>
+          <path d="M18 23h16M18 29h10"/>
+          <path d="M4 20v12M48 20v12"/>
           <circle cx="37" cy="28" r="3" fill="currentColor" stroke="none"/>
         </svg>
         <div class="svc-name">Tune Up Mesin</div>
         <p class="svc-desc">Setel ulang mesin untuk performa maksimal. Termasuk penggantian busi, filter udara, dan kalibrasi sistem injeksi.</p>
         <span class="svc-price">Mulai Rp 350.000</span>
       </div>
+
       <div class="svc-card reveal d4">
         <div class="svc-num">04</div>
         <svg class="svc-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="26" cy="26" r="18"/>
           <circle cx="26" cy="26" r="10" stroke-dasharray="3 2"/>
           <circle cx="26" cy="26" r="3.5" fill="currentColor" stroke="none"/>
-          <path d="M26 8v6M26 38v6M8 26h6M38 26h6M14.3 14.3l4.2 4.2M33.5 33.5l4.2 4.2M14.3 37.7l4.2-4.2M33.5 18.5l4.2-4.2"/>
+          <path d="M26 8v6M26 38v6M8 26h6M38 26h6"/>
+          <path d="M14.3 14.3l4.2 4.2M33.5 33.5l4.2 4.2M14.3 37.7l4.2-4.2M33.5 18.5l4.2-4.2"/>
         </svg>
         <div class="svc-name">Spooring &amp; Balancing</div>
-        <p class="svc-desc">Koreksi geometri roda dan keseimbangan ban untuk kenyamanan berkendara dan umur ban lebih panjang.</p>
+        <p class="svc-desc">Koreksi geometri roda dan keseimbangan ban untuk kenyamanan berkendara, efisiensi bahan bakar, dan umur ban lebih panjang.</p>
         <span class="svc-price">Mulai Rp 200.000</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -612,11 +425,35 @@
           <h2 class="sec-title">Kenapa Pilih<br><em>AutoCare Pro?</em></h2>
           <p class="why-sub">Kami tidak sekadar memperbaiki kendaraan — kami membangun kepercayaan melalui transparansi, kecepatan, dan kualitas yang tidak pernah kompromi.</p>
         </div>
-        <div class="features">
-          <div class="feat reveal d1"><div class="feat-num">01</div><div><div class="feat-title">Teknisi Bersertifikat</div><p class="feat-desc">Seluruh mekanik kami memiliki sertifikasi resmi dan terus mengikuti pelatihan teknologi terkini.</p></div></div>
-          <div class="feat reveal d2"><div class="feat-num">02</div><div><div class="feat-title">Peralatan Diagnostik Modern</div><p class="feat-desc">Scanner OBD generasi terbaru untuk diagnosis akurat — hemat waktu dan biaya perbaikan Anda.</p></div></div>
-          <div class="feat reveal d3"><div class="feat-num">03</div><div><div class="feat-title">Transparansi Biaya &amp; Proses</div><p class="feat-desc">Estimasi biaya sebelum pengerjaan. Tidak ada biaya tersembunyi. Laporan servis lengkap setiap kunjungan.</p></div></div>
-          <div class="feat reveal d4"><div class="feat-num">04</div><div><div class="feat-title">Garansi Pengerjaan 30 Hari</div><p class="feat-desc">Setiap pekerjaan bergaransi 30 hari. Ada masalah pasca servis? Kami tangani tanpa biaya tambahan.</p></div></div>
+        <div class="features" style="margin-top:36px;">
+          <div class="feat reveal d1">
+            <div class="feat-num">01</div>
+            <div>
+              <div class="feat-title">Teknisi Bersertifikat</div>
+              <p class="feat-desc">Seluruh mekanik kami memiliki sertifikasi resmi dan terus mengikuti pelatihan teknologi terkini.</p>
+            </div>
+          </div>
+          <div class="feat reveal d2">
+            <div class="feat-num">02</div>
+            <div>
+              <div class="feat-title">Peralatan Diagnostik Modern</div>
+              <p class="feat-desc">Scanner OBD generasi terbaru untuk diagnosis akurat — hemat waktu dan biaya perbaikan Anda.</p>
+            </div>
+          </div>
+          <div class="feat reveal d3">
+            <div class="feat-num">03</div>
+            <div>
+              <div class="feat-title">Transparansi Biaya &amp; Proses</div>
+              <p class="feat-desc">Estimasi biaya sebelum pengerjaan. Tidak ada biaya tersembunyi. Laporan servis lengkap setiap kunjungan.</p>
+            </div>
+          </div>
+          <div class="feat reveal d4">
+            <div class="feat-num">04</div>
+            <div>
+              <div class="feat-title">Garansi Pengerjaan 30 Hari</div>
+              <p class="feat-desc">Setiap pekerjaan bergaransi 30 hari. Ada masalah pasca servis? Kami tangani tanpa biaya tambahan.</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="reveal d2">
@@ -643,26 +480,31 @@
     <div class="t-track">
       <div class="t-card reveal">
         <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
         <p class="t-text">Sudah 3 tahun setia ke AutoCare Pro. Teknisinya jujur dan profesional. Tidak pernah diberi tagihan yang tidak perlu. Sangat direkomendasikan!</p>
         <div class="t-author"><div class="t-avatar">BW</div><div><div class="t-name">Budi Wicaksono</div><div class="t-role">Honda CR-V 2020</div></div></div>
       </div>
       <div class="t-card reveal d1">
         <div class="t-stars">★★★★★</div>
-        <p class="t-text">Spooring dan balancing hasilnya mantap. Setir jadi lurus dan mobil tidak lagi bergetar di kecepatan tinggi. Harga pun sangat terjangkau.</p>
+        <div class="t-quote">"</div>
+        <p class="t-text">Spooring dan balancing di sini hasilnya mantap. Setir jadi lurus dan mobil tidak lagi bergetar di kecepatan tinggi. Harga pun sangat terjangkau.</p>
         <div class="t-author"><div class="t-avatar">SR</div><div><div class="t-name">Siti Rahma</div><div class="t-role">Toyota Avanza 2019</div></div></div>
       </div>
       <div class="t-card reveal d2">
         <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
         <p class="t-text">Tune up mesin selesai dalam 2 jam, lebih cepat dari yang dijanjikan. Ruang tunggunya nyaman dengan WiFi. Pelayanannya benar-benar top!</p>
         <div class="t-author"><div class="t-avatar">RP</div><div><div class="t-name">Rizki Pratama</div><div class="t-role">Suzuki Ertiga 2021</div></div></div>
       </div>
       <div class="t-card reveal d3">
         <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
         <p class="t-text">Booking online sangat mudah. Tim langsung konfirmasi dan kendaraan saya bisa diambil tepat waktu. Pelayanan kelas premium dengan harga wajar!</p>
         <div class="t-author"><div class="t-avatar">DA</div><div><div class="t-name">Dewi Anggraini</div><div class="t-role">Daihatsu Xenia 2022</div></div></div>
       </div>
       <div class="t-card reveal d4">
         <div class="t-stars">★★★★★</div>
+        <div class="t-quote">"</div>
         <p class="t-text">Masalah mesin yang lama tidak ketemu solusinya, berhasil didiagnosis cepat dengan alat scanner mereka. Bengkel terpercaya yang saya rekomendasikan!</p>
         <div class="t-author"><div class="t-avatar">HN</div><div><div class="t-name">Hendra Nugroho</div><div class="t-role">Mitsubishi Pajero 2018</div></div></div>
       </div>
@@ -686,10 +528,30 @@
         <h2 class="sec-title">Booking<br>Servis <em>Hari Ini</em></h2>
         <p class="cta-sub">Jangan tunda perawatan kendaraan Anda. Tim profesional kami siap membantu 6 hari seminggu. Estimasi biaya gratis sebelum pengerjaan.</p>
         <div class="contact-items">
-          <div class="c-item"><div class="c-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.63a16 16 0 006.29 6.29l1.95-1.95a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>+62 811-0000-1234</div>
-          <div class="c-item"><div class="c-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>Jl. Raya Industri No. 42, Jakarta Selatan</div>
-          <div class="c-item"><div class="c-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>Senin – Sabtu: 08.00 – 18.00 WIB</div>
-          <div class="c-item"><div class="c-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>info@autocarepro.id</div>
+          <div class="c-item">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.63a16 16 0 006.29 6.29l1.95-1.95a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            +62 811-0000-1234
+          </div>
+          <div class="c-item">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            Jl. Raya Industri No. 42, Jakarta Selatan
+          </div>
+          <div class="c-item">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            Senin – Sabtu: 08.00 – 18.00 WIB
+          </div>
+          <div class="c-item">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            info@autocarepro.id
+          </div>
         </div>
       </div>
       <div class="form-box reveal d2">
@@ -698,14 +560,24 @@
             <div class="f-grp"><label>Nama Lengkap</label><input type="text" placeholder="Budi Santoso" required></div>
             <div class="f-grp"><label>No. Telepon</label><input type="tel" placeholder="08xx-xxxx-xxxx" required></div>
           </div>
-          <div class="f-grp"><label>Jenis Kendaraan</label>
-            <select required><option value="" disabled selected>Pilih kendaraan Anda</option><option>Toyota</option><option>Honda</option><option>Suzuki</option><option>Daihatsu</option><option>Mitsubishi</option><option>Nissan</option><option>Lainnya</option></select>
+          <div class="f-grp">
+            <label>Jenis Kendaraan</label>
+            <select required>
+              <option value="" disabled selected>Pilih kendaraan Anda</option>
+              <option>Toyota</option><option>Honda</option><option>Suzuki</option>
+              <option>Daihatsu</option><option>Mitsubishi</option><option>Nissan</option><option>Lainnya</option>
+            </select>
           </div>
-          <div class="f-grp"><label>Layanan yang Dibutuhkan</label>
-            <select required><option value="" disabled selected>Pilih layanan</option><option>Servis Rutin</option><option>Ganti Oli</option><option>Tune Up Mesin</option><option>Spooring &amp; Balancing</option><option>Servis AC</option><option>Lainnya</option></select>
+          <div class="f-grp">
+            <label>Layanan yang Dibutuhkan</label>
+            <select required>
+              <option value="" disabled selected>Pilih layanan</option>
+              <option>Servis Rutin</option><option>Ganti Oli</option><option>Tune Up Mesin</option>
+              <option>Spooring &amp; Balancing</option><option>Servis AC</option><option>Lainnya</option>
+            </select>
           </div>
           <div class="f-grp"><label>Pesan Tambahan (Opsional)</label><textarea placeholder="Ceritakan keluhan kendaraan Anda..."></textarea></div>
-          <button type="submit" class="f-submit">Kirim Booking</button>
+          <button type="submit" class="f-submit">Kirim Booking &rarr;</button>
         </form>
       </div>
     </div>
@@ -725,64 +597,69 @@
 </footer>
 
 <script>
-// Nav scroll shadow
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', scrollY > 50);
+// Cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
+(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(raf);})();
+document.querySelectorAll('a,button,.svc-card,.t-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.opacity='.35';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='34px';ring.style.height='34px';ring.style.opacity='.55';});
 });
 
-// Scroll reveal
-const ro = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }),
-  { threshold: 0.1 }
-);
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>55);
+});
 
-// Animated counters
-function runCounter(el, target, dur = 1800) {
-  let s = 0, inc = target / (dur / 16);
-  const t = setInterval(() => {
-    s += inc;
-    if (s >= target) { el.textContent = target.toLocaleString('id-ID'); clearInterval(t); }
-    else el.textContent = Math.floor(s).toLocaleString('id-ID');
-  }, 16);
+// Reveal
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// Counter
+function runCounter(el,target,dur=1800){
+  let s=0,inc=target/(dur/16);
+  const t=setInterval(()=>{s+=inc;if(s>=target){el.textContent=target.toLocaleString('id-ID');clearInterval(t);}else el.textContent=Math.floor(s).toLocaleString('id-ID');},16);
 }
-const cob = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) { runCounter(e.target, +e.target.dataset.t); cob.unobserve(e.target); } }),
-  { threshold: 0.5 }
-);
-document.querySelectorAll('.ctr, .sctr').forEach(el => cob.observe(el));
+const cob=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){runCounter(e.target,+e.target.dataset.t);cob.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.ctr,.sctr').forEach(el=>cob.observe(el));
 
-// Testimonials scroll + dots
-const tscroll = document.getElementById('tscroll');
-const tdots = document.querySelectorAll('.tdot');
-function goTesti(i) { tscroll.scrollTo({ left: i * (340 + 24), behavior: 'smooth' }); tdots.forEach((d, j) => d.classList.toggle('active', j === i)); }
-tscroll.addEventListener('scroll', () => { const i = Math.round(tscroll.scrollLeft / (340 + 24)); tdots.forEach((d, j) => d.classList.toggle('active', j === i)); });
+// Stat box border
+const sob=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('inview');}),{threshold:.3});
+document.querySelectorAll('.stat-box').forEach(el=>sob.observe(el));
 
-// Form submit
-function submitForm(e) {
+// Testimonials
+const tscroll=document.getElementById('tscroll');
+const tdots=document.querySelectorAll('.tdot');
+function goTesti(i){tscroll.scrollTo({left:i*(350+18),behavior:'smooth'});tdots.forEach((d,j)=>d.classList.toggle('active',j===i));}
+tscroll.addEventListener('scroll',()=>{const i=Math.round(tscroll.scrollLeft/(350+18));tdots.forEach((d,j)=>d.classList.toggle('active',j===i));});
+
+// Form
+function submitForm(e){
   e.preventDefault();
-  const t = document.getElementById('toast');
+  const t=document.getElementById('toast');
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 4000);
+  setTimeout(()=>t.classList.remove('show'),4000);
   e.target.reset();
 }
 
 // Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const h = a.getAttribute('href');
-    if (h === '#') return;
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
     e.preventDefault();
-    document.querySelector(h)?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(h)?.scrollIntoView({behavior:'smooth'});
   });
 });
 
-// Mobile nav toggle
-document.getElementById('navTgl').addEventListener('click', () => {
-  const nl = document.querySelector('.nav-links');
-  const open = nl.style.display === 'flex';
-  if (open) { nl.style.display = ''; return; }
-  Object.assign(nl.style, { display: 'flex', flexDirection: 'column', position: 'absolute', top: '64px', left: '0', right: '0', background: 'rgba(255,255,255,.97)', padding: '20px 24px', gap: '16px', borderBottom: '1px solid rgba(0,0,0,.1)' });
+// Mobile nav
+document.getElementById('navTgl').addEventListener('click',()=>{
+  const nl=document.querySelector('.nav-links');
+  const open=nl.style.display==='flex';
+  if(open){nl.style.display='';return;}
+  Object.assign(nl.style,{display:'flex',flexDirection:'column',position:'absolute',top:'58px',left:'0',right:'0',background:'rgba(12,12,14,.97)',padding:'20px 24px',gap:'18px',borderBottom:'1px solid rgba(255,255,255,.07)'});
 });
 </script>
 </body>
